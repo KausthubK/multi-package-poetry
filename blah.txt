@@ -1,0 +1,26 @@
+packages = [{include = "multi_package_poetry"}]
+
+[tool.poetry]
+name = "multi-package-poetry"
+version = "0.1.0"
+description = ""
+authors = ["Kausthub Krishnamurthy <kausthub.k@live.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.11"
+
+[tool.poetry.group.a_pkg.dependencies]
+numpy = "^1.21.3"
+
+[tool.poetry.group.b_pkg.dependencies]
+pandas = "^1.3.4"
+
+
+[tool.poetry.group.dev.dependencies]
+icecream = "^2.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
