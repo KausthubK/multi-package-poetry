@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "a-pkg"
+name = "a_pkg"
 version = "0.1.0"
 description = ""
 authors = ["Kausthub Krishnamurthy <kausthub.k@live.com>"]
 readme = "README.md"
-packages = []
+packages = [{include = "a_pkg"}]
 
 [tool.poetry.dependencies]
 python = "^3.8, <3.9"
 numpy = "^1.21.3"
+b_pkg = {path = "../b_pkg"}
 
-
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 coverage = "^6.1.1"
 pytest = "^6.2.5"
 

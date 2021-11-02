@@ -1,0 +1,31 @@
+FROM python:3.8.8-slim
+
+# Install curl & OpenCV binary dependencies
+RUN apt-get update && \
+    apt-get install -y curl gnupg && \
+    apt-get install -y libsm6 libxext6 libfontconfig1 libxrender1 libgl1-mesa-glx libglib2.0-0 && \
+    rm -rf /var/lib/apt/lists/*
+
+# Don't use pip since installs with virutalenvs.create == false will remove
+# needed packages
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PYTHONFAULTHANDLER=1 \
+    POETRY_VERSION=1.1.8 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_NO_INTERACTION=1
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+ENV PATH="$POETRY_HOME/bin:$PATH"
+
+RUN mkdir -p /workspace
+WORKDIR /workspace
+COPY a_pkg/pyproject.toml a_pkg/poetry.lock ./
+
+RUN poetry config virtualenvs.create false && \
+    poetry install -E database --no-root --no-dev
+
+RUN poetry install --no-dev
+
+COPY a_pkg ./a_pkg
+
+USER scriptrunner

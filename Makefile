@@ -1,17 +1,25 @@
-run:
-	poetry run python3 main.py
-
-uninstall:
-	poetry env remove python3
-
-clean:
-	rm poetry.lock
-	rm pyproject.toml
+#
+# Makefile
+#
 
 install:
-	./setup_dev_env.sh
-	poetry install
+	cd a_pkg && poetry install
+	cd b_pkg && poetry install
 
 test:
-	poetry run coverage run --source=. -m pytest -rsxE
-	# set up recursive tests for subpackages
+	cd a_pkg && make test
+	cd b_pkg && make test
+
+run_a:
+	cd a_pkg && make run
+
+run_b:
+	cd b_pkg && make run
+
+uninstall:
+	cd a_pkg && make uninstall
+	cd b_pkg && make uninstall
+
+clean:
+	cd a_pkg && make clean
+	cd b_pkg && make clean

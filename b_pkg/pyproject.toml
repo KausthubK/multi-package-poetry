@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "b-pkg"
+name = "b_pkg"
 version = "0.1.0"
 description = ""
 authors = ["Kausthub Krishnamurthy <kausthub.k@live.com>"]
 readme = "README.md"
-packages = []
+packages = [{include = "b_pkg"}]
 
 [tool.poetry.dependencies]
-python = "^3.8, <3.9"
+python = "^3.8"
 pandas = "^1.3.4"
 
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 icecream = "^2.1.1"
 coverage = "^6.1.1"
 pytest = "^6.2.5"
