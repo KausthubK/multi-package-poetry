@@ -1,20 +1,18 @@
 [tool.poetry]
-name = "a_pkg"
+name = "c_pkg"
 version = "0.1.0"
-description = ""
+description = "c package"
 authors = ["Kausthub Krishnamurthy <kausthub.k@live.com>"]
-readme = "README.md"
-packages = [{include = "a_pkg"}]
 
 [tool.poetry.dependencies]
 python = "^3.8, <3.9"
-numpy = "^1.21.3"
+seaborn = "^0.11.2"
+b_pkg = {path = "../b_pkg"}
+a_pkg = {path = "../a_pkg", develop = false}
 
 [tool.poetry.dev-dependencies]
-coverage = "^6.1.1"
-pytest = "^6.2.5"
-b_pkg = {path = "../b_pkg"}
+
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
